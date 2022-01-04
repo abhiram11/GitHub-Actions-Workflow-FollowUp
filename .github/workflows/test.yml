@@ -1,1 +1,10 @@
-abhi's yaml prototype file is a github action
+abhiapp:
+  service: cicd-abhi-project
+  test1: script1
+  test2: script2
+  arrayStyle:
+    - key1: value1
+      key1another: blahblah
+    - key2: valueee2
+    - key3333: anotherValue
+      valuerandom: heyy1111
