@@ -1,9 +1,30 @@
-name: Abhi's Github Action Checkout Repo
+name: Node Try by Abhi
 on: [push]
 jobs:
   build-app:
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v2 #this is github's action from a lot of action
-      - run: echo "Just a parallel action... its original code shifted to test.yml"
-      # - run: tree # simple bash command, not related to git
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.17.0'
+      - name: upgrade yarn
+        run : brew upgrade yarn
+      - name: Install Node Modules!
+        run: yarn #installing dependencies, another bash command only...
+      # - name: Solving cache error
+      #   run: yarn cache clean
+      - name: Building the project
+        run: yarn build
+      - name: Setup finished!
+        run: echo "Setup Done, yay!"
+
+
+# name: Abhi's Github Action Checkout Repo
+# on: [push]
+# jobs:
+#   build-app:
+#     runs-on: ubuntu-latest
+#     steps:
+#       # - uses: actions/checkout@v2 #this is github's action from a lot of action
+#       - run: echo "Just a parallel action... its original code shifted to test.yml"
+#       # - run: tree # simple bash command, not related to git
