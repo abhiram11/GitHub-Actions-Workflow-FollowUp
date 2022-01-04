@@ -11,7 +11,12 @@ jobs: #they are performed PARALLELY!!!!!!!!
     runs-on: ubuntu-latest
     steps:
       - run : echo "Linting Job! DOESN'T WAIT FOR OTHER JOBS to FINISH!"
-
+  build-app:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2 #this is github's action from a lot of action
+        - run: echo "Shows the directory structure of the repository"
+        - run: tree # simple bash command, not related to git
 
 
 # abhiapp:
