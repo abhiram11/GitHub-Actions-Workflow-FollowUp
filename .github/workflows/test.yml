@@ -1,1 +1,24 @@
-abhi's yaml prototype file is a github action
+#valid github action: hEllo world kind of, also multi line content
+name: Abhi's First Github Action
+on: [push] #can also be pull_request, deployment_status (vercel bots that give url)
+jobs: #they are performed SEQUENTIALLY (not guaranteed (?)), not in parallel
+  build-hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello World by Abhi!!!!" #run = bash command
+    # this will run hello world job on ubuntu-latest docker image!
+      - run: echo "this is step no. 2 that echo, runs sequentially after prev"
+
+
+
+# abhiapp:
+#   service: cicd-abhi-project
+#   test1: script1
+#   test2: script2
+#   arrayStyle:
+#     - key1: value1
+#       key1another: blahblah
+#     - key2: valueee2
+#     - key3333: anotherValue
+#       valuerandom: heyy1111
+#     -multi
