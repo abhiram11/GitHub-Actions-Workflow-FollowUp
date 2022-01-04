@@ -1,0 +1,9 @@
+name: Abhi's Github Action Checkout Repo
+on: [push]
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@v2 #this is github's action from a lot of action
+      - run: echo "Just a parallel action... its original code shifted to test.yml"
+      # - run: tree # simple bash command, not related to git
