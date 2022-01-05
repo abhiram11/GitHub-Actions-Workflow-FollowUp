@@ -12,9 +12,6 @@ jobs:
       - name: Building the project
         run: npm build
       - name: Deploying Project using Vercel (giving .env variables as well)..!!
-        env:
-          VERCEL_ORG_ID: lBnbt4OgRifkSJAMtUqo7wUl
-          VERCEL_PROJECT_ID: prj_6QscRhYoHU0D2I4kexqYqMO2ZVLZ
           #we might need TOKEN in package.json deploy command
         run : |
           npm deploy 
