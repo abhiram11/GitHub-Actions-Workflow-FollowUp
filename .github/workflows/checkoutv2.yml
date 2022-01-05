@@ -11,6 +11,10 @@ jobs:
         run: npm install #installing dependencies, another bash command only...
       - name: Building the project
         run: npm build
+      - name: Deploying Project using Vercel (giving .env variables as well)..!!
+          #we might need TOKEN in package.json deploy command
+        run : |
+          npm deploy 
       - name: Setup finished!
         run: echo "Setup Done, yay!"
 
