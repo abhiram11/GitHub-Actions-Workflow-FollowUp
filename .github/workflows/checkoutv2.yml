@@ -3,28 +3,35 @@ on: [push]
 jobs:
   build-app:
     runs-on: ubuntu-latest
+    env:
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }} #lhs can be named anything though
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: '14.17.0'
       - name: Install Node Modules!
         run: npm install #installing dependencies, another bash command only...
       - name: Building the project
-        run: npm build
+        run: npm run build
+      # - name: Check directory structure
+      #   run: tree # works if we do checkout, duh!
+      - name: Set the vercel env
+        run: |
+          cd build
+          mkdir .vercel
+          cd .vercel
+          touch project.json
+          echo 'YOOO : {\"projectId\":\"$VERCEL_PROJECT_ID\",\"orgId\":\"$VERCEL_ORG_ID\"}' > project.json
       - name: Deploying Project using Vercel (giving .env variables as well)..!!
           #we might need TOKEN in package.json deploy command
-        run : |
-          npm deploy 
+        run : yarn deploy 
       - name: Setup finished!
         run: echo "Setup Done, yay!"
-
-
-# name: Abhi's Github Action Checkout Repo
-# on: [push]
-# jobs:
-#   build-app:
-#     runs-on: ubuntu-latest
-#     steps:
-#       # - uses: actions/checkout@v2 #this is github's action from a lot of action
-#       - run: echo "Just a parallel action... its original code shifted to test.yml"
-#       # - run: tree # simple bash command, not related to git
+  test-app-post-build:
+    needs: build-app
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Different jobs run on DIFFERENT n ISOLATED Docker Images"
