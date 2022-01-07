@@ -16,8 +16,8 @@ jobs:
         run: npm install #installing dependencies, another bash command only...
       - name: Building the project
         run: npm build
-      # - name: Check directory structure
-      #   run: tree # works if we do checkout, duh!
+      - name: Check directory structure
+        run: tree # works if we do checkout, duh!
       - name: Set the vercel env
         run: |
           cd build
