@@ -15,7 +15,7 @@ jobs:
       - name: Install Node Modules!
         run: npm install #installing dependencies, another bash command only...
       - name: Building the project
-        run: npm build
+        run: npm run build
       - name: Check directory structure
         run: tree # works if we do checkout, duh!
       - name: Set the vercel env
