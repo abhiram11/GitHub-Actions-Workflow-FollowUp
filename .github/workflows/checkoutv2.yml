@@ -3,6 +3,12 @@ on: [push]
 jobs:
   build-app:
     runs-on: ubuntu-latest
+    #added for dependent jobs data sharing
+    outputs:
+    #step id is needed for data acquiring, and then only sharing is done
+      textAbhiShare: ${{ steps.finishedStep.outputs.textAbhi}}
+      #this text is output of the WHOLE Job itself
+# end data sharing
     env:
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }} #lhs can be named anything though
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -30,8 +36,15 @@ jobs:
         run : yarn deploy 
       - name: Setup finished!
         run: echo "Setup Done, yay!"
+      - name: Sharing Data on Dependent Jobs!
+        id: finishedStep #required for data sharing between DEPENDENT jobs
+        run: echo "::set-output name=textAbhi::hello-from-buildapp-job!!"
+        #this variable textAbhi can be read by any job that has "NEEDS: build-app" job!!
   test-app-post-build:
     needs: build-app
     runs-on: ubuntu-latest
+    # data sharing dependent jobs
+    env:
+      MY_JOB_OUTPUT: ${{ needs.build-app.outputs.textAbhiShare }}
     steps:
-      - run: echo "Different jobs run on DIFFERENT n ISOLATED Docker Images"
+      - run: echo "BuildApp Data- $MY_JOB_OUTPUT --- Different jobs run on DIFFERENT n ISOLATED Docker Images"
