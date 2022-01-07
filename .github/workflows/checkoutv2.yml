@@ -21,7 +21,7 @@ jobs:
           mkdir .vercel
           cd .vercel
           touch project.json
-          echo '{\"projectId\":\"$VERCEL_PROJECT_ID\",\"orgId\":\"$VERCEL_ORG_ID\"}' > project.json
+          echo 'YOOO : {\"projectId\":\"$VERCEL_PROJECT_ID\",\"orgId\":\"$VERCEL_ORG_ID\"}' > project.json
       - name: Deploying Project using Vercel (giving .env variables as well)..!!
           #we might need TOKEN in package.json deploy command
         run : yarn deploy 
