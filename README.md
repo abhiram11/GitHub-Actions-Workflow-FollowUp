@@ -2,6 +2,15 @@
 
 ## Don't miss out on the Youtube Video attached on the right!
 
+.
+.
+.
+
+
+
+
+
+
 
 # Getting Started with Create React App
 
